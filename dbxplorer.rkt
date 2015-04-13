@@ -1,3 +1,4 @@
+#!/usr/bin/env racket
 #lang racket/gui
 ; dbxplorer
 ; a gui to explore and modify the contents of a sqlite database
@@ -83,7 +84,8 @@
                          (for ([i (tables (sqlc))])
                            (send results-text insert (string-append i "\n")))
                          (send results-text insert
-                               (vector-ref (first (columns (sqlc))) 4)))))]))
+                               (string-append
+                                (vector-ref (first (columns (sqlc))) 4) "\n")))))]))
 
 ; text object for the editor canvas
 (define results-text (new text% [auto-wrap #t]))
